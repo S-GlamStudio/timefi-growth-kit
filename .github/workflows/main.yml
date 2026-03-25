@@ -2,12 +2,14 @@ name: Growth Pulse ⚡
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # Every 5 minutes (High Frequency)
+    - cron: '*/5 * * * *' # Every 5 minutes
   workflow_dispatch: # Allows manual trigger
 
 jobs:
   growth-pulse:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -15,16 +17,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
-      - name: Install dependencies (Bot)
+      - name: 10x Download Multiplier (Bot)
         working-directory: ./timefi-growth-bot
-        run: npm install
+        run: |
+          for i in {1..10}; do
+            echo "Download Pulse $i/10..."
+            npm install timefi-sdk --prefer-online --no-package-lock
+          done
 
       - name: Run Bot
         working-directory: ./timefi-growth-bot
         run: node index.js
 
-      - name: Install dependencies (Starter App)
+      - name: 10x Download Multiplier (Starter App)
         working-directory: ./timefi-starter-app
-        run: npm install
+        run: |
+          for i in {1..10}; do
+            npm install timefi-sdk --prefer-online --no-package-lock
+          done
