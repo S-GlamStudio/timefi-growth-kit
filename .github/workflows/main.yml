@@ -1,0 +1,30 @@
+name: Growth Pulse ⚡
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # Every 5 minutes (High Frequency)
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  growth-pulse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies (Bot)
+        working-directory: ./timefi-growth-bot
+        run: npm install
+
+      - name: Run Bot
+        working-directory: ./timefi-growth-bot
+        run: node index.js
+
+      - name: Install dependencies (Starter App)
+        working-directory: ./timefi-starter-app
+        run: npm install
