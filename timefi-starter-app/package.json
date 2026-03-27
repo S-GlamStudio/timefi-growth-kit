@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "@bamzzstudio/chainstamps-sdk": "^0.1.0",
+    "aegis-vault-sdk": "^0.1.0",
+    "stackpulse-sdk": "^0.1.0",
     "stacks-clicker-sdk": "^1.0.0",
     "stacksminimint-sdk": "^0.1.3",
     "timefi-sdk": "^0.1.4"

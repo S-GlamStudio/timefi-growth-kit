@@ -4,6 +4,8 @@
 
 - **timefi-growth-bot**: Installs and executes real read-only calls using:
   - `timefi-sdk`
+  - `stackpulse-sdk`
+  - `aegis-vault-sdk`
   - `stacks-clicker-sdk`
   - `stacksminimint-sdk`
   - `@bamzzstudio/chainstamps-sdk`
@@ -36,7 +38,7 @@ MINIMINT_CONTRACT_NAME=minimint-core-v-i27 npm run start
 
 The workflow in `.github/workflows/growth-pulse.yml`:
 
-- Runs every 15 minutes (test mode).
+- Runs every 5 minutes (test mode).
 - Performs a fresh `npm ci` in each integration project.
 - Runs real SDK calls afterward.
 
@@ -46,6 +48,8 @@ Both apps should print:
 
 - active network
 - TimeFi TVL result
+- StackPulse registry/tier result
+- Aegis vault result
 - StacksClicker payload details
 - StacksMinimint token info
 - Chainstamp hash count
